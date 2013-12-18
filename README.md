@@ -1,7 +1,9 @@
 js-populate-fields
 ================
 
-Populates form elements from a JSON object.
+A simple JavaScript `populateFields` function which will populate form elements from a JSON object.
+
+The function takes the various input types (text, email, select, multiple select, etc) into account and acts accordingly.
 
 ## Usage
 
@@ -14,12 +16,14 @@ Populates form elements from a JSON object.
 	<input type="text" name="address[addr1]" />
 	<input type="text" name="address[city]" />
 	<input type="text" name="address[state]" />
-
 </form>
 ````
 
 *JavaScript*
 ```javascript
+
+// your JSON object
+// keys have to match input names
 var data = {
 	"email": "john@doe.com",
 	"name": "John Doe",
@@ -30,6 +34,12 @@ var data = {
 	}
 }
 
+// your containing element
 var formElement = document.getElementById('my-form');
+
+// populate the form with our JSON object
 populateFields(formElement, data);
 ```
+
+## License
+GPLv2
