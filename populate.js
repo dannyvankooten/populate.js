@@ -83,7 +83,7 @@
 			return populate;
 		});
 	}	else if ( typeof exports === 'object' ) {
-		exports.faviconSlider = populate;
+		exports.populate = populate;
 	} else {
 		root.populate = populate;
 	}
