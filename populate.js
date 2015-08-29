@@ -41,11 +41,7 @@
 
 				// check element type
 				switch(element.type || element.tagName) {
-					case 'text':
-					case 'email':
-					case 'date':
-					case 'tel':
-					case 'number':
+					default:
 						element.value = value;
 						break;
 
