@@ -65,10 +65,6 @@
 					case 'select-one':
 						element.value = value.toString() || value;
 						break;
-
-					case 'textarea':
-						element.innerText = value;
-						break;
 				}
 			}
 
