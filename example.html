@@ -6,6 +6,7 @@
 		body{ font-family: Helvetica Neue, Arial, Helvetica, sans-serif; max-width: 480px; margin: 0 auto; padding: 40px; }
 		label{ display: block; font-weight: 500; margin-top: 20px; }
 		input, textarea { display: block; padding: 6px 12px; width: 100%; }
+		input[type="checkbox"] { display: inline-block; width: auto; }
 	</style>
 </head>
 <body>
@@ -32,6 +33,12 @@
 		<label>Textarea</label>
 		<textarea name="bio" rows="5"></textarea>
 
+		<label>Interests</label>
+		<input type="checkbox" name="interests[]" value="Eating" /> Eating
+		<input type="checkbox" name="interests[]" value="Sleeping" /> Sleeping
+		<input type="checkbox" name="interests[]" value="Running" /> Running
+
+
 	</form>
 
 
@@ -49,7 +56,8 @@
 			},
 			"date_of_birth": "1990-07-29",
 			"age": 25,
-			"bio": "Some longer text with line-breaks.\n\nCool."
+			"bio": "Some longer text with line-breaks.\n\nCool.",
+			"interests": [ "Eating", "Running" ]
 		};
 
 		// your containing element

@@ -23,23 +23,18 @@
 			if(typeof(basename) !== "undefined") {
 				name = basename + "[" + key + "]";
 			}
-
-			if(value.constructor == Array) {
+			
+			if(value.constructor === Array) {
 				name += '[]';
 			} else if(typeof value == "object") {
 				populate(container, value, name);
 				continue;
 			}
 
-			// populate field
+			// find field element
 			var elements = container.querySelectorAll('input[name="'+ name +'"], select[name="'+ name +'"], textarea[name="'+ name +'"]');
 
-			// Dirty: abandon if we did not find the element
-			if(!elements) {
-				return;
-			}
-
-			// loop through found elements to set their values
+			// loop through elements to set their values
 			for(var i = 0; i < elements.length; i++) {
 
 				var element = elements[i];
@@ -59,9 +54,7 @@
 						break;
 
 					case 'checkbox':
-						for(var j = 0; j < value.length; j++) {
-							element.checked = (element.value === value[j]);
-						}
+						element.checked = ( value.indexOf(element.value) > -1 );
 						break;
 
 					case 'select-multiple':
