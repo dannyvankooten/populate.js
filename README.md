@@ -1,9 +1,9 @@
-js-populate-fields
+populate.js
 ================
 
-A simple JavaScript `populateFields` function which will populate form elements from a JSON object.
+A simple JavaScript `populate( form, data )` function which will populate form fields from a JSON object.
 
-The function takes the various input types (text, email, select, multiple select, etc) into account and acts accordingly.
+Input types (text, email, select, multiple select, etc) are taken into account but not validated.
 
 ## Usage
 
@@ -38,8 +38,8 @@ var data = {
 var formElement = document.getElementById('my-form');
 
 // populate the form with our JSON object
-populateFields(formElement, data);
+populate(formElement, data);
 ```
 
 ## License
-GPLv2
+MIT licensed.

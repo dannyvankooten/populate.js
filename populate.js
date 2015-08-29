@@ -1,14 +1,17 @@
-function populateFields(container, data, basename) {
+
+/*! populate.js v1.0 by @dannyvankooten | MIT license */
+;(function(root) {
+
+	var populate = function(container, data, basename) {
 
 	for(var key in data) {
 
-		var name = key;
-		var value = data[key];
-
-		// no need to set empty values
-		if(value == "") {
+		if( ! data.hasOwnProperty( key ) ) {
 			continue;
 		}
+
+		var name = key;
+		var value = data[key];
 
 		// handle array name attributes
 		if(typeof(basename) !== "undefined") {
@@ -18,7 +21,7 @@ function populateFields(container, data, basename) {
 		if(value.constructor == Array) {
 			name += '[]';
 		} else if(typeof value == "object") {
-			populateFields(container, value, name);
+			populate(container, value, name);
 			continue;
 		}
 
@@ -41,6 +44,7 @@ function populateFields(container, data, basename) {
 				case 'email':
 				case 'date':
 				case 'tel':
+				case 'number':
 					element.value = value;
 					break;
 
@@ -70,10 +74,27 @@ function populateFields(container, data, basename) {
 				case 'select-one':
 					element.value = value.toString() || value;
 					break;
+
+				case 'textarea':
+					element.innerText = value;
+					break;
 			}
 		}
 			
 		
 	}
 
-}
+};
+
+	// Play nice with AMD, CommonJS or a plain global object.
+	if ( typeof define == 'function' && typeof define.amd == 'object' && define.amd ) {
+		define(function() {
+			return populate;
+		});
+	}	else if ( typeof exports === 'object' ) {
+		exports.faviconSlider = populate;
+	} else {
+		root.populate = populate;
+	}
+
+}(this));

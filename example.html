@@ -1,0 +1,62 @@
+<!doctype>
+<html>
+<head>
+	<title>populate.js demo</title>
+	<style>
+		body{ font-family: Helvetica Neue, Arial, Helvetica, sans-serif; max-width: 480px; margin: 0 auto; padding: 40px; }
+		label{ display: block; font-weight: 500; margin-top: 20px; }
+		input, textarea { display: block; padding: 6px 12px; width: 100%; }
+	</style>
+</head>
+<body>
+
+	<!-- The form we're going to populate -->
+	<form id="my-form">
+		<label>Name</label>
+		<input type="text" name="name" />
+
+		<label>Email</label>
+		<input type="email" name="email" />
+
+		<label>Subkeys</label>
+		<input type="text" name="address[addr1]" />
+		<input type="text" name="address[city]" />
+		<input type="text" name="address[state]" />
+
+		<label>Date</label>
+		<input type="date" name="date_of_birth" />
+
+		<label>Number</label>
+		<input type="number" name="age" />
+
+		<label>Textarea</label>
+		<textarea name="bio" rows="5"></textarea>
+
+	</form>
+
+
+	<script src="populate.js"></script>
+	<script>
+		// your JSON object
+		// make sure that keys match the `name` of your input fields
+		var data = {
+			"email": "john@doe.com",
+			"name": "John Doe",
+			"address": {
+				"addr1": "Street name",
+				"city": "City name",
+				"state": "State"
+			},
+			"date_of_birth": "29/07/1990",
+			"age": 25,
+			"bio": "Some longer text with line-breaks.\n\nCool."
+		};
+
+		// your containing element
+		var formElement = document.getElementById('my-form');
+
+		// populate the form with our JSON object
+		populate(formElement, data);
+	</script>
+</body>
+</html>
