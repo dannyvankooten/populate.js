@@ -1,0 +1,15 @@
+{
+  "name": "populate.js",
+  "version": "1.0",
+  "homepage": "https://github.com/dannyvankooten/populate.js",
+  "authors": [
+    "Danny van Kooten <hi@dvk.co>"
+  ],
+  "description": "Populate form fields from a JSON object. No dependencies.",
+  "main": "populate.js",
+  "keywords": [
+    "form",
+    "json"
+  ],
+  "license": "MIT"
+}
