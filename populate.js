@@ -23,7 +23,7 @@
 			if(typeof(basename) !== "undefined") {
 				name = basename + "[" + key + "]";
 			}
-			
+
 			if(value.constructor === Array) {
 				name += '[]';
 			} else if(typeof value == "object") {
@@ -60,12 +60,8 @@
 					case 'select-multiple':
 						var values = value.constructor == Array ? value : [value];
 
-						for(var k = 0; k < element.options.length; k++)
-						{
-							for(var l = 0; l < values.length; l++)
-							{
-								element.options[k].selected |= (element.options[k].value == values[l]);
-							}
+						for(var k = 0; k < element.options.length; k++) {
+							element.options[k].selected |= (values.indexOf(element.options[k].value) > -1 );
 						}
 						break;
 

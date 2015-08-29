@@ -38,7 +38,12 @@
 		<input type="checkbox" name="interests[]" value="Sleeping" /> Sleeping
 		<input type="checkbox" name="interests[]" value="Running" /> Running
 
-
+		<label>Fruits</label>
+		<select name="fruits[]" multiple>
+			<option>Apples</option>
+			<option>Bananas</option>
+			<option>Oranges</option>
+		</select>
 	</form>
 
 
@@ -57,7 +62,8 @@
 			"date_of_birth": "1990-07-29",
 			"age": 25,
 			"bio": "Some longer text with line-breaks.\n\nCool.",
-			"interests": [ "Eating", "Running" ]
+			"interests": [ "Eating", "Running" ],
+			"fruits": [ "Apples", "Bananas", "Mango" ]
 		};
 
 		// your containing element
