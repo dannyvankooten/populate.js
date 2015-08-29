@@ -79,7 +79,7 @@
 			return populate;
 		});
 	}	else if ( typeof exports === 'object' ) {
-		exports.populate = populate;
+		module.exports = populate;
 	} else {
 		root.populate = populate;
 	}
