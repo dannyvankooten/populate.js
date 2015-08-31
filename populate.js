@@ -27,7 +27,7 @@
 			if(value.constructor === Array) {
 				name += '[]';
 			} else if(typeof value == "object") {
-				populate( formElement, value, name);
+				populate( form, value, name);
 				continue;
 			}
 
