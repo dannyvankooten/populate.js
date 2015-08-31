@@ -6,7 +6,7 @@
 		body{ font-family: Helvetica Neue, Arial, Helvetica, sans-serif; max-width: 480px; margin: 0 auto; padding: 40px; }
 		label{ display: block; font-weight: 500; margin-top: 20px; }
 		input, textarea { display: block; padding: 6px 12px; width: 100%; }
-		input[type="checkbox"] { display: inline-block; width: auto; }
+		input[type="checkbox"], input[type="radio"] { display: inline-block; width: auto; }
 	</style>
 </head>
 <body>
@@ -38,6 +38,10 @@
 		<input type="checkbox" name="interests[]" value="Sleeping" /> Sleeping
 		<input type="checkbox" name="interests[]" value="Running" /> Running
 
+		<label>Gender</label>
+		<input type="radio" name="gender" value="Male" /> Male
+		<input type="radio" name="gender" value="Female" /> Female
+
 		<label>Fruits</label>
 		<select name="fruits[]" multiple>
 			<option>Apples</option>
@@ -59,6 +63,7 @@
 				"city": "City name",
 				"state": "State"
 			},
+			"gender": "Male",
 			"date_of_birth": "1990-07-29",
 			"age": 25,
 			"bio": "Some longer text with line-breaks.\n\nCool.",
