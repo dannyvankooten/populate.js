@@ -75,8 +75,8 @@
 		define(function() {
 			return populate;
 		});
-	}	else if ( typeof exports === 'object' ) {
-		exports.populate = populate;
+	}	else if ( typeof module !== 'undefined' && module.exports ) {
+		module.exports = populate;
 	} else {
 		root.populate = populate;
 	}
