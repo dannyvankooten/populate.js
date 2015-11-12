@@ -1,4 +1,4 @@
-/*! populate.js v1.0 by @dannyvankooten | MIT license */
+/*! populate.js v1.0.2 by @dannyvankooten | MIT license */
 ;(function(root) {
 
 	/**
@@ -37,13 +37,15 @@
 				continue;
 			}
 
-			// check element type
-			switch(element.type || element.constructor ) {
+			var type = element.type || element[0].type;
+
+			switch(type ) {
 				default:
 					element.value = value;
 					break;
 
-				case RadioNodeList:
+				case 'radio':
+				case 'checkbox':
 					for( var j=0; j < element.length; j++ ) {
 						element[j].checked = ( value.indexOf(element[j].value) > -1 );
 					}
@@ -64,8 +66,6 @@
 
 			}
 
-
-
 		}
 
 	};
@@ -75,8 +75,8 @@
 		define(function() {
 			return populate;
 		});
-	}	else if ( typeof exports === 'object' ) {
-		exports.populate = populate;
+	}	else if ( typeof module !== 'undefined' && module.exports ) {
+		module.exports = populate;
 	} else {
 		root.populate = populate;
 	}
