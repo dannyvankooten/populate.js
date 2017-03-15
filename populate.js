@@ -63,7 +63,9 @@
 				case 'select-one':
 					element.value = value.toString() || value;
 					break;
-
+				case 'date':
+          				element.value = new Date(value).toISOString().split('T')[0];	
+					break;
 			}
 
 		}
