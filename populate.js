@@ -27,13 +27,13 @@
 			var name = key;
 			var value = data[key];
 
-                        if ('undefined' === typeof value) {
-                            value = '';
-                        }
+			if ('undefined' === typeof value) {
+				value = '';
+			}
 
-                        if (null === value) {
-                            value = '';
-                        }
+			if (null === value) {
+				value = '';
+			}
 
 			// handle array name attributes
 			if(basename) {
