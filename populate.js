@@ -7,8 +7,15 @@
 	 * @param form object The form element containing your input fields.
 	 * @param data array JSON data to populate the fields with.
 	 * @param basename string Optional basename which is added to `name` attributes
+	 * @param deserializeFields bool Optional flag. If true, data values of type object will be
+	 *   deserialized (i.e. "foo" : { "bar": 1 } would try to populate a field named "foo[bar]"
+	 *   with the value 1). If false, would instead try to populate a field named "foo" with
+	 *   (pretty-printed) JSON string '{ "bar": 1 }'.
 	 */
-	var populate = function( form, data, basename) {
+	var populate = function( form, data, basename, deserializeFields = true) {
+		if ('undefined' === typeof form.elements) {
+			throw new Error('populate.js can only fill a form when form.elements is defined.');
+		}
 
 		for(var key in data) {
 
@@ -28,14 +35,19 @@
                         }
 
 			// handle array name attributes
-			if(typeof(basename) !== "undefined") {
+			if(basename) {
 				name = basename + "[" + key + "]";
 			}
 
 			if(value.constructor === Array) {
 				name += '[]';
 			} else if(typeof value == "object") {
-				populate( form, value, name);
+				if (deserializeFields) {
+					populate( form, value, name);
+				}
+				else {
+					populate(form, {[name]: JSON.stringify(value, null, 2)});
+				}
 				continue;
 			}
 
@@ -54,8 +66,13 @@
 
 				case 'radio':
 				case 'checkbox':
-					for( var j=0; j < element.length; j++ ) {
-						element[j].checked = ( value.indexOf(element[j].value) > -1 );
+					if (element.length) {
+						for( var j=0; j < element.length; j++ ) {
+							element[j].checked = ( value.indexOf(element[j].value) > -1 );
+						}
+					}
+					else {
+						element.value = value;
 					}
 					break;
 
@@ -72,7 +89,7 @@
 					element.value = value.toString() || value;
 					break;
 				case 'date':
-          				element.value = new Date(value).toISOString().split('T')[0];	
+          				element.value = new Date(value).toISOString().split('T')[0];
 					break;
 			}
 
