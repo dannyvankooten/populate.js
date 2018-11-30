@@ -10,7 +10,7 @@
 	</style>
 </head>
 <body>
-
+	<h2>Form populated from a JSON object</h2>
 	<!-- The form we're going to populate -->
 	<form id="my-form">
 		<label>Name</label>
@@ -42,12 +42,25 @@
 		<input type="radio" name="gender" value="Male" /> Male
 		<input type="radio" name="gender" value="Female" /> Female
 
+		<label>Likes fruit?</label>
+		<input type="checkbox" name="likes_fruit" />
+
 		<label>Fruits</label>
 		<select name="fruits[]" multiple>
 			<option>Apples</option>
 			<option>Bananas</option>
 			<option>Oranges</option>
 		</select>
+	</form>
+
+	<h2>Object fields may also be left as JSON</h2>
+	<!-- A form showing the behavior of deserializeFields = false -->
+	<form id="deserialize-fields-example">
+		<label>Name</label>
+		<input type="text" name="name" />
+
+		<label>Address</label>
+		<textarea name="address" cols="40" rows="10"></textarea>
 	</form>
 
 
@@ -68,6 +81,7 @@
 			"age": 25,
 			"bio": "Some longer text with line-breaks.\n\nCool.",
 			"interests": [ "Eating", "Running" ],
+			"likes_fruit": true,
 			"fruits": [ "Apples", "Bananas", "Mango" ]
 		};
 
@@ -76,6 +90,10 @@
 
 		// populate the form with our JSON object
 		populate(formElement, data);
+
+		// show example with deserializeFields = false
+		formElement = document.getElementById('deserialize-fields-example');
+		populate(formElement, data, null, false);
 	</script>
 </body>
 </html>

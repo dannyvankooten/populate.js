@@ -6,11 +6,12 @@
 	 *
 	 * @param form object The form element containing your input fields.
 	 * @param data array JSON data to populate the fields with.
-	 * @param basename string Optional basename which is added to `name` attributes
-	 * @param deserializeFields bool Optional flag. If true, data values of type object will be
-	 *   deserialized (i.e. "foo" : { "bar": 1 } would try to populate a field named "foo[bar]"
-	 *   with the value 1). If false, would instead try to populate a field named "foo" with
-	 *   (pretty-printed) JSON string '{ "bar": 1 }'.
+	 * @param basename string Optional basename which is added to `name` attributes. Used to
+	 *   deserialize object fields (i.e. {"foo": {"bar": 1}} will try to populate a field
+	 *   named "foo[bar]" with the value 1).
+	 * @param deserializeFields bool Optional flag. If false, {"foo": {"bar": 1}} would
+	 *   instead try to populate a field named "foo" with (pretty-printed) JSON string
+	 *  '{ "bar": 1 }'.
 	 */
 	var populate = function( form, data, basename, deserializeFields = true) {
 		if ('undefined' === typeof form.elements) {
@@ -72,7 +73,7 @@
 						}
 					}
 					else {
-						element.value = value;
+						element.checked = value > 0;
 					}
 					break;
 
