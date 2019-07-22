@@ -76,6 +76,21 @@
 					break;
 			}
 
+			var change_event = new Event('change', { bubbles: true });
+
+			switch(type) {
+				default:
+					element.dispatchEvent(change_event);
+					break;
+				case 'radio':
+				case 'checkbox':
+					for( var j=0; j < element.length; j++ ) {
+						if( element[j].checked ) {
+							element[j].dispatchEvent(change_event);
+						}
+					}
+					break;
+			}
 		}
 
 	};
