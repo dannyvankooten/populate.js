@@ -1,12 +1,15 @@
 {
   "name": "populate.js",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "https://github.com/dannyvankooten/populate.js",
   "main": "populate.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/dannyvankooten/populate.js"
   },
+  "files": [
+    "populate.js"
+  ],
   "keywords": [
     "form",
     "json"
