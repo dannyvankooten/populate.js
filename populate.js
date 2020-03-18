@@ -51,7 +51,7 @@ function populate(form, data, basename) {
 			case 'radio':
 			case 'checkbox':
 				for (var j=0; j < element.length; j++) {
-					element[j].checked = (value.indexOf(element[j].value) > -1);
+					element[j].checked = (String(value) === String(element[j].value));
 				}
 				break;
 

@@ -11,6 +11,9 @@
     "form",
     "json"
   ],
+  "scripts": {
+    "test": "node test.js"
+  },
   "author": "Danny van Kooten <hi@dvk.co>",
   "license": "MIT",
   "bugs": {
