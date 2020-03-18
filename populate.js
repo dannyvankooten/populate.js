@@ -59,7 +59,7 @@ function populate(form, data, basename) {
 				var values = value.constructor == Array ? value : [value];
 
 				for(var k = 0; k < element.options.length; k++) {
-					element.options[k].selected |= (values.indexOf(element.options[k].value) > -1 );
+					element.options[k].selected = (values.indexOf(element.options[k].value) > -1 );
 				}
 				break;
 
