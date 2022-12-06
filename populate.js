@@ -35,6 +35,7 @@ function populate(form, data, basename) {
 			continue;
 		}
 
+
 		// only proceed if element is set
 		var element = form.elements.namedItem(name);
 		if (! element) {
@@ -72,6 +73,22 @@ function populate(form, data, basename) {
       			element.value = new Date(value).toISOString().split('T')[0];	
 				break;
 		}
+    
+    var change_event = new Event('change', { bubbles: true });
+
+			switch(type) {
+				default:
+					element.dispatchEvent(change_event);
+					break;
+				case 'radio':
+				case 'checkbox':
+					for( var j=0; j < element.length; j++ ) {
+						if( element[j].checked ) {
+							element[j].dispatchEvent(change_event);
+						}
+					}
+					break;
+			}
 
 	}
 };
