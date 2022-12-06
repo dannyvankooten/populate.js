@@ -2,66 +2,68 @@
 /**
  * Populate form fields from a JSON object.
  *
- * @param form object The form element containing your input fields.
- * @param data array JSON data to populate the fields with.
- * @param basename string Optional basename which is added to `name` attributes
+ * @param {HTMLFormElement} form The form element containing your input fields.
+ * @param {object} data JSON data to populate the fields with.
+ * @param {string} basename Optional basename which is added to `name` attributes, eg basename[fieldname]
  */
 function populate(form, data, basename) {
-	for (var key in data) {
-		if (! data.hasOwnProperty(key)) {
+	for (const key in data) {
+		if (!data.hasOwnProperty(key)) {
 			continue;
 		}
 
-		var name = key;
-		var value = data[key];
+		const name = key;
+		let value = data[key];
 
-        if ('undefined' === typeof value) {
-            value = '';
-        }
+		if ('undefined' === typeof value) {
+			value = '';
+		}
 
-        if (null === value) {
-            value = '';
-        }
+		if (null === value) {
+			value = '';
+		}
 
 		// handle array name attributes
-		if (typeof(basename) !== "undefined") {
+		if (typeof (basename) !== "undefined") {
 			name = basename + "[" + key + "]";
 		}
 
 		if (value.constructor === Array) {
 			name += '[]';
-		} else if(typeof value == "object") {
+		} else if (typeof value == "object") {
 			populate(form, value, name);
 			continue;
 		}
 
 
-		// only proceed if element is set
-		var element = form.elements.namedItem(name);
-		if (! element) {
+		// only proceed if form has element with the given name attribute
+		const element = form.elements.namedItem(name);
+		if (!element) {
 			continue;
 		}
 
-		var type = element.type || element[0].type;
-
-		switch(type ) {
+		// set element value
+		const type = element.type || element[0].type;
+		switch (type) {
 			default:
 				element.value = value;
 				break;
 
 			case 'radio':
-			case 'checkbox':
-				var values = value.constructor === Array ? value : [value];
-				for (var j=0; j < element.length; j++) {
+			case 'checkbox': {
+				const values = value.constructor === Array ? value : [value];
+				for (let j = 0; j < element.length; j++) {
 					element[j].checked = values.indexOf(element[j].value) > -1;
 				}
+			}
 				break;
 
-			case 'select-multiple':
-				var values = value.constructor === Array ? value : [value];
-				for(var k = 0; k < element.options.length; k++) {
-					element.options[k].selected = (values.indexOf(element.options[k].value) > -1 );
+			case 'select-multiple': {
+				const values = value.constructor === Array ? value : [value];
+				for (let k = 0; k < element.options.length; k++) {
+					element.options[k].selected = (values.indexOf(element.options[k].value) > -1);
 				}
+			}
 				break;
 
 			case 'select':
@@ -70,25 +72,25 @@ function populate(form, data, basename) {
 				break;
 
 			case 'date':
-      			element.value = new Date(value).toISOString().split('T')[0];	
+				element.value = new Date(value).toISOString().split('T')[0];
 				break;
 		}
-    
-    var change_event = new Event('change', { bubbles: true });
 
-			switch(type) {
-				default:
-					element.dispatchEvent(change_event);
-					break;
-				case 'radio':
-				case 'checkbox':
-					for( var j=0; j < element.length; j++ ) {
-						if( element[j].checked ) {
-							element[j].dispatchEvent(change_event);
-						}
+		// fire change event on element
+		const changeEvent = new Event('change', { bubbles: true });
+		switch (type) {
+			default:
+				element.dispatchEvent(changeEvent);
+				break;
+			case 'radio':
+			case 'checkbox':
+				for (let j = 0; j < element.length; j++) {
+					if (element[j].checked) {
+						element[j].dispatchEvent(changeEvent);
 					}
-					break;
-			}
+				}
+				break;
+		}
 
 	}
 };
