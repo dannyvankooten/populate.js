@@ -18,5 +18,5 @@
     "test": "node test.js"
   },
   "author": "Danny van Kooten <hi@dvk.co>",
-  "license": "MIT",
+  "license": "MIT"
 }
