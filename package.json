@@ -1,11 +1,11 @@
 {
   "name": "populate.js",
   "version": "1.3.0",
-  "description": "https://github.com/dannyvankooten/populate.js",
+  "description": "Library to populate form fields from a JSON object",
   "main": "populate.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/dannyvankooten/populate.js"
+    "url": "https://git.sr.ht/~dvko/populate.js"
   },
   "files": [
     "populate.js"
@@ -19,8 +19,4 @@
   },
   "author": "Danny van Kooten <hi@dvk.co>",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/dannyvankooten/populate.js/issues"
-  },
-  "homepage": "https://github.com/dannyvankooten/populate.js"
 }
