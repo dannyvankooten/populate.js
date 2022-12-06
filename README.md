@@ -41,5 +41,14 @@ var formElement = document.getElementById('my-form');
 populate(formElement, data);
 ```
 
+## Install
+
+Load the JavaScript file in your browser directly or install using NPM:
+
+```
+npm install populate.js
+```
+
+
 ## License
 MIT licensed.

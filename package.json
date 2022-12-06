@@ -1,16 +1,22 @@
 {
   "name": "populate.js",
-  "version": "1.0.3",
+  "version": "1.2.2",
   "description": "https://github.com/dannyvankooten/populate.js",
   "main": "populate.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/dannyvankooten/populate.js"
   },
+  "files": [
+    "populate.js"
+  ],
   "keywords": [
     "form",
     "json"
   ],
+  "scripts": {
+    "test": "node test.js"
+  },
   "author": "Danny van Kooten <hi@dvk.co>",
   "license": "MIT",
   "bugs": {
