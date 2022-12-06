@@ -1,3 +1,5 @@
+This repository moved to https://git.sr.ht/~dvko/populate.js on 2022-12-06 :warning:
+
 populate.js
 ================
 
